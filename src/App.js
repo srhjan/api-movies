@@ -1,24 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./tailwind.css";
+import axios from "axios";
+import Input from "./components/Input";
 
 function App() {
+  function search(title) {
+    return axios({
+      method: "get",
+      url: "http://www.omdbapi.com",
+      params: {
+        apikey: "190cab4b",
+        t: title,
+      },
+    }).then((res) => {
+      console.log(res);
+      return {
+        title: res.data.Title,
+        poster: res.data.Poster,
+      };
+    });
+  }
+  const [newTitle, setNewTitle] = useState("");
+  const [title, setTitle] = useState("");
+  const [poster, setPoster] = useState();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div className="ml-3">Nom du film : </div>
+      <div className="m-16">{title}</div>
+      <img src={poster}></img>
+      <div>
+        <Input
+          title={newTitle}
+          setTitle={(title) => setNewTitle(title)}
+        ></Input>
+        {/* <input
+          className="border border-purple-400 ml-3 p-1"
+          onChange={(e) => setNewTitle(e.target.value)}
+        /> */}
+        <button
+          className="border border-gray-600 mt-4 p-1 ml-3"
+          onClick={() =>
+            search(newTitle).then((title) => {
+              console.log(title);
+              setTitle(title.title);
+              setPoster(title.poster);
+            })
+          }
         >
-          Learn React
-        </a>
-      </header>
+          Rechercher
+        </button>
+      </div>
     </div>
   );
 }
