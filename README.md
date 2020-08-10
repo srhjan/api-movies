@@ -9,3 +9,4 @@ OK 8. Vider l'input après avoir envoyé.
 
 9. Créer un {} movies contenant les différentes infos que l'on souhaite
 10. Séparer tout ça dans des components.
+11. Bien formater le fichier READ ME
