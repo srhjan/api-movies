@@ -5,6 +5,7 @@ OK 4. Je cherche comment faire des requêtes HTTP avec les Hooks de React.
 OK 5. Je cherche comment récupérer la valeur de l'input pour la passer à ma requête.
 OK 6. Je cherche comment afficher les films en JSON.
 OK 7. J'affiche les films en HTML (en bien) avec l'image et le titre (à minima).
+OK 8. Vider l'input après avoir envoyé.
 
-8. Vider l'input après avoir envoyé.
-9. Séparer tout ça dans des components.
+9. Créer un {} movies contenant les différentes infos que l'on souhaite
+10. Séparer tout ça dans des components.
