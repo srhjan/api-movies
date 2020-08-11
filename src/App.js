@@ -3,15 +3,16 @@ import "./tailwind.css";
 import axios from "axios";
 import Input from "./components/Input";
 import Movie from "./components/Movie";
+import Button from "./components/Button.js";
 
 function App() {
-  function search(title) {
+  function search(movie) {
     return axios({
       method: "get",
       url: "http://www.omdbapi.com",
       params: {
         apikey: "190cab4b",
-        t: title,
+        t: movie,
       },
     }).then((res) => {
       console.log(res);
@@ -22,32 +23,24 @@ function App() {
     });
   }
   const [newTitle, setNewTitle] = useState("");
-  const [title, setTitle] = useState("");
-  const [poster, setPoster] = useState();
+  const [movie, setMovie] = useState({});
   return (
     <div>
-      {/* <div className="ml-3">Nom du film : </div>
-      <div className="m-6">{title}</div>
-      <img className="mb-6" src={poster}></img> */}
-      <Movie title={title} poster={poster}></Movie>
+      <Movie movie={movie}></Movie>
       <div>
         <Input
           title={newTitle}
           setTitle={(title) => setNewTitle(title)}
         ></Input>
-        <button
-          className="border border-gray-600 mt-4 p-1 ml-3"
-          onClick={() => {
-            search(newTitle).then((title) => {
-              console.log(title);
-              setTitle(title.title);
-              setPoster(title.poster);
+        <Button
+          onclick={() => {
+            search(newTitle).then((movie) => {
+              console.log(movie);
+              setMovie(movie);
             });
             setNewTitle("");
           }}
-        >
-          Rechercher
-        </button>
+        ></Button>
       </div>
     </div>
   );
